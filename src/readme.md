@@ -1,6 +1,6 @@
 # Projeto do de seleção - Saltsystem
 
-##  Front-end
+##  Back-end
 
 ## Tecnologias usadas
 
