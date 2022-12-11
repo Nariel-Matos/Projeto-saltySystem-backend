@@ -12,7 +12,7 @@ const schemaUsuario = Joi.object({
         "any.required":"Email é obrigatório",
         "string.empty":"O campo Email é  obrigatório",
         "string.base":"O campo Email deve conter texto válido",
-        "string.email":"O campo Email deve conter apenas letras" 
+        "string.email":"O campo Email deve conter um email válido " 
     }),
     senha: Joi.string().required().min(6).trim().messages({
         "string.min":"O campo Senha deve conter no mínimo 6 caracteres",
@@ -38,7 +38,24 @@ const schemaLoginUsuario = Joi.object({
     }),
 })
 
+const schemaContatos = Joi.object({
+    nome:Joi.string().required().pattern(/^[a-z,A-Z]/).trim().messages({
+        "any.required":"Nome é obrigatório",
+        "string.empty":"O campo Nome é obrigatório",
+        "string.base":"O campo Nome deve conter texto válido",
+        "string.pattern.base":"O campo Nome deve conter apenas letras"
+    }),
+    email:Joi.string().required().email().trim().messages({
+        "any.required":"Email é obrigatório",
+        "string.empty":"O campo Email é  obrigatório",
+        "string.base":"O campo Email deve conter texto válido",
+        "string.email":"O campo Email deve conter um email válido " 
+    }),
+   
+})
+
 module.exports ={
  schemaUsuario,
- schemaLoginUsuario
+ schemaLoginUsuario,
+ schemaContatos
 }

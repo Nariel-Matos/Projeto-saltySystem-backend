@@ -13,9 +13,6 @@ try {
 
 }
 
-
-
-
 const autenticacao = async (req, res, next) => {
     const { authorization } = req.headers
 
@@ -33,17 +30,14 @@ const autenticacao = async (req, res, next) => {
         if (rowCount === 0) {
             return res.status(401).json({ mensagem: "usuário não autorizado" })
         }
-        console.log(rows)
+
         req.usuario = rows[0]
 
         next()
 
 
     } catch (error) {
-        if (error.message === "invalid token") {
-            console.log(error.message)
-            return res.json({ mensagem: "token inválido" })
-        }
+        return res.status(401).json({ mensagem: "usuário não autorizado" })
     }
   
 
