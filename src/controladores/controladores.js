@@ -119,6 +119,7 @@ const logicaRobo = async (req,res) => {
       const usuarioMsg = await pool.query(`select * from mensagens where usuario_id = $1`,[id])
       if(usuarioMsg.rowCount == 0){
         await pool.query(`insert into mensagens(mensagens,usuario_id) values($1,$2)`,[mensagem,id])
+       
         return res.status(200).json({mensagem:`Olá, ${nome} vamos começar? `})
       }
       if(usuarioMsg.rowCount == 1){
